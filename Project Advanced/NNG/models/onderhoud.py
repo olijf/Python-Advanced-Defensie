@@ -11,7 +11,7 @@ class Onderhoud:
         self.tooling = []
 
     def __repr__(self):
-        return ' - '.join(self.__dict__.values())
+        return ' - '.join(map(str, self.__dict__.values()))
 
 
 # --------------------------------------------------------------------
