@@ -15,13 +15,21 @@ class Materiaal:
         self.gebeurtenissen = []           # TODO - list vullen
         self.onderhoudsbeurten = []
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return ' - '.join(map(str, self.__dict__.values()))
 
-    def add_gebeurtenis(self, gebeurtenis):
+    def add_gebeurtenis(self, gebeurtenis: Gebeurtenis):
+        """Koppel een gebeurtenis aan dit materiaal
+
+        Params:
+            gebeurtenis - een severe gebeurtenis"""
         self.gebeurtenissen.append(gebeurtenis)
 
-    def add_onderhoudsbeurt(self, onderhoudsbeurt):
+    def add_onderhoudsbeurt(self, onderhoudsbeurt: Onderhoud):
+        """Koppel een onderhoudsbeurt aan dit materiaal
+
+        Params:
+            onderhoudsbeurt - een onderhoudsbeurt"""
         self.gebeurtenissen.append(onderhoudsbeurt)
 
 
@@ -47,5 +55,7 @@ if __name__ == '__main__':
 
     found_materiaal.add_gebeurtenis( Gebeurtenis('**', '2022-09-05', 'Peter', 'Harde landing', 'Soesterberg', 'windkracht 7 zijwaarts') )
     found_materiaal.add_gebeurtenis( Gebeurtenis('***', '2022-09-06', 'Peter', 'Zeer harde landing', 'Soesterberg', 'windkracht 7 frontaal') )
+
+    found_materiaal.add_gebeurtenis( Gebeurtenis('**', '2022-09-05', 'Peter', 'Harde landing', 'Soesterberg', 'windkracht 7 zijwaarts') )
 
     print(found_materiaal)
