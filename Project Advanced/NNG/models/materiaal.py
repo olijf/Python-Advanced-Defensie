@@ -1,3 +1,5 @@
+from gebeurtenis import Gebeurtenis
+from onderhoud import Onderhoud
 
 class Materiaal:
 
@@ -9,10 +11,17 @@ class Materiaal:
         self.partnummer = partnummer
         self.serienummer = serienummer
         self.positie = positie
+        self.gebeurtenissen = []
+        self.onderhoudsbeurten = []
 
     def __repr__(self):
-        return ' - '.join(self.__dict__.values())
+        return ' - '.join(map(str, self.__dict__.values()))
 
+    def add_gebeurtenis(self, gebeurtenis):
+        self.gebeurtenissen.append(gebeurtenis)
+
+    def add_onderhoudsbeurt(self, onderhoudsbeurt):
+        self.gebeurtenissen.append(onderhoudsbeurt)
 
 # --------------------------------------------------------------------
 
@@ -29,3 +38,12 @@ if __name__ == '__main__':
         if 'F16' in materiaal.naam:
             print(materiaal)
 
+    for materiaal in materieel:
+        if materiaal.serienummer == '374589-324678':
+            found_materiaal = materiaal
+            break
+
+    found_materiaal.add_gebeurtenis( Gebeurtenis('**', '2022-09-05', 'Peter', 'Harde landing', 'Soesterberg', 'windkracht 7 zijwaarts') )
+    found_materiaal.add_gebeurtenis( Gebeurtenis('***', '2022-09-06', 'Peter', 'Zeer harde landing', 'Soesterberg', 'windkracht 7 frontaal') )
+
+    print(found_materiaal)

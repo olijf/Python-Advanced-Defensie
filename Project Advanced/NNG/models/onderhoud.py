@@ -42,5 +42,10 @@ if __name__ == '__main__':
     onderhoudsbeurten.append( onderhoud )
 
     for onderhoud in onderhoudsbeurten:
-        print(onderhoud)
+        bFound = False
+        for tool in onderhoud.tooling:
+            if tool.serienr == '345345':
+                bFound = True
+        if bFound:
+            print(onderhoud)
 

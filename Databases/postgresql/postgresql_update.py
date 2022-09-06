@@ -7,17 +7,25 @@ import sys
 con = None
 
 try:
-    con = psycopg2.connect("host='localhost' dbname='testdb' user='pythonspot' password='password'")
-    cur = con.cursor()
-    cur.execute("UPDATE Products SET Price=%s WHERE Id=%s", (10, 4))
-    con.commit()
+    connection_string = "host='localhost' " \
+                        "port='5432' " \
+                        "dbname='postgres' " \
+                        "user='postgres' " \
+                        "password='postgres'"
+    conn = psycopg2.connect(connection_string)
+
+    cur = conn.cursor()
+    cur.execute("UPDATE Products SET Price=%s WHERE Id=%s", (10, 2))
+
+    conn.commit()
+
 except psycopg2.DatabaseError as e:
-    if con:
-        con.rollback()
+    if conn:
+        conn.rollback()
 
     print('Error %s' % e)
     sys.exit(1)
 
 finally:
-    if con:
-        con.close()
+    if conn:
+        conn.close()
