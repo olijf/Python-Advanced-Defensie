@@ -1,3 +1,5 @@
+import jsonpickle
+
 from gebeurtenis import Gebeurtenis
 from onderhoud import Onderhoud
 
@@ -12,7 +14,7 @@ class Materiaal:
         self.partnummer = partnummer
         self.serienummer = serienummer
         self.positie = positie
-        self.gebeurtenissen = []           # TODO - list vullen
+        self.gebeurtenissen = []
         self.onderhoudsbeurten = []
 
     def __repr__(self) -> str:
@@ -30,8 +32,22 @@ class Materiaal:
 
         Params:
             onderhoudsbeurt - een onderhoudsbeurt"""
-        self.gebeurtenissen.append(onderhoudsbeurt)
+        self.onderhoudsbeurten.append(onderhoudsbeurt)
 
+    def overzicht(self) -> str:
+        s = f'{self.serienummer} - {self.naam}\n'
+        if self.gebeurtenissen:
+            s += 'Gebeurtenissen:\n'
+            for gebeurtenis in self.gebeurtenissen:
+                s += gebeurtenis.overzicht() + '\n'
+        if self.onderhoudsbeurten:
+            s += 'Onderhoudsbeurten:\n'
+            for onderhoudsbeurt in self.onderhoudsbeurten:
+                s += onderhoudsbeurt.overzicht() + '\n'
+        return s
+
+    def to_json(self):
+        return jsonpickle.dumps(self)
 
 # --------------------------------------------------------------------
 
@@ -55,7 +71,7 @@ if __name__ == '__main__':
 
     found_materiaal.add_gebeurtenis( Gebeurtenis('**', '2022-09-05', 'Peter', 'Harde landing', 'Soesterberg', 'windkracht 7 zijwaarts') )
     found_materiaal.add_gebeurtenis( Gebeurtenis('***', '2022-09-06', 'Peter', 'Zeer harde landing', 'Soesterberg', 'windkracht 7 frontaal') )
-
     found_materiaal.add_gebeurtenis( Gebeurtenis('**', '2022-09-05', 'Peter', 'Harde landing', 'Soesterberg', 'windkracht 7 zijwaarts') )
 
     print(found_materiaal)
+

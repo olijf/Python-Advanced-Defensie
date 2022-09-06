@@ -1,3 +1,4 @@
+import jsonpickle
 
 class Tool:
 
@@ -7,6 +8,9 @@ class Tool:
 
     def __repr__(self):
         return ' - '.join(map(str, self.__dict__.values()))
+
+    def to_json(self):
+        return jsonpickle.dumps(self)
 
 
 # ---------------------------------------------

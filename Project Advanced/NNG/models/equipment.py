@@ -1,3 +1,6 @@
+import pickle
+import jsonpickle
+
 from materiaal import Materiaal
 
 class Equipment:
@@ -5,13 +8,54 @@ class Equipment:
     def __init__(self):
         self.equipment = []
 
-    def add_materiaal(self, materiaal):
+    def add_materiaal(self, materiaal: Materiaal):
         self.equipment.append(materiaal)
 
-    def get_materiaal(self, serienummer):
+    def get_materiaal(self, serienummer: str) -> Materiaal:
         for materiaal in self.equipment:
             if materiaal.serienummer == serienummer:
                 return materiaal
+
+    def overzicht(self) -> str:
+        s = 'Equipment:\n'
+        for materiaal in self.equipment:
+            s += materiaal.overzicht() + '\n'
+            s += 80 * '=' + '\n'
+        return s
+
+    def to_pickle(self):
+        with open('equipment.pickle', 'wb') as f:
+            pickle.dump(self, f)
+            print('Data opgeslagen in equipment.pickle')
+
+    @staticmethod
+    def from_pickle():
+        try:
+            with open('equipment.pickle', 'rb') as f:
+                equipment = pickle.load(f)
+                print('Data gelezen uit equipment.pickle')
+                return equipment
+        except FileNotFoundError:
+            print('Kan het bestand niet vinden')
+            raise FileNotFoundError()
+
+    def to_json(self):
+        s = jsonpickle.dumps(self)
+        with open('equipment.json', 'w') as f:
+            f.write(s)
+            print('Data opgeslagen in equipment.json')
+
+    @staticmethod
+    def from_json():
+        try:
+            with open('equipment.json', 'r') as f:
+                s = f.read()
+                equipment = jsonpickle.loads(s)
+                print('Data gelezen uit equipment.pickle')
+                return equipment
+        except FileNotFoundError:
+            print('Kan het bestand niet vinden')
+            raise FileNotFoundError()
 
 
 # ----------------------------

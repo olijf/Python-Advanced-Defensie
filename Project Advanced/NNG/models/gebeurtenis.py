@@ -1,3 +1,4 @@
+import jsonpickle
 
 class Gebeurtenis:
 
@@ -12,6 +13,11 @@ class Gebeurtenis:
     def __repr__(self):
         return ' - '.join(self.__dict__.values())
 
+    def overzicht(self) -> str:
+        return f'{self.datum} - {self.omschrijving}'
+
+    def to_json(self):
+        return jsonpickle.dumps(self)
 
 # --------------------------------------------------------------------
 

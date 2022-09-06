@@ -1,3 +1,4 @@
+import jsonpickle
 
 class Onderhoud:
 
@@ -22,6 +23,11 @@ class Onderhoud:
     def add_tool(self, tool):
         self.tooling.append(tool)
 
+    def overzicht(self) -> str:
+        return f'{self.datum} - {self.type}'
+
+    def to_json(self):
+        return jsonpickle.dumps(self)
 
 # --------------------------------------------------------------------
 
