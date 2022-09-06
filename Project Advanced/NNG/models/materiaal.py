@@ -2,16 +2,17 @@ from gebeurtenis import Gebeurtenis
 from onderhoud import Onderhoud
 
 class Materiaal:
+    """Dit is mijn Materiaal klasse. Het gaat om een een enkel stuk materiaal."""
 
     def __init__(self, naam, omschrijving, atacode, soort, partnummer, serienummer, positie):
         self.naam = naam
         self.omschrijving = omschrijving
-        self.atacode = atacode
+        self.atacode = atacode              # eg 23
         self.type = soort
         self.partnummer = partnummer
         self.serienummer = serienummer
         self.positie = positie
-        self.gebeurtenissen = []
+        self.gebeurtenissen = []           # TODO - list vullen
         self.onderhoudsbeurten = []
 
     def __repr__(self):
@@ -22,6 +23,7 @@ class Materiaal:
 
     def add_onderhoudsbeurt(self, onderhoudsbeurt):
         self.gebeurtenissen.append(onderhoudsbeurt)
+
 
 # --------------------------------------------------------------------
 
