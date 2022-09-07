@@ -1,6 +1,6 @@
 import random
 
-getallen = [random.randint(1, 100) for i in range(30)]
+getallen = [random.randint(1, 100) for i in range(30)]x
 print(getallen)
 
 kwadraten = [getal ** 2 for getal in getallen]
