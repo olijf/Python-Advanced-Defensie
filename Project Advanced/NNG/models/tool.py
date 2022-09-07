@@ -1,20 +1,6 @@
 import jsonpickle
 
-from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Date, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
-
-engine = create_engine('sqlite:///nng.db', echo=True)
-Base = declarative_base()
-
-class Tool(Base):
-
-    __tablename__ = "tool"
-
-    id = Column(Integer, primary_key=True)
-    soort = Column(String)
-    serienr = Column(String)
+class Tool:
 
     def __init__(self, soort, serienr):
         self.soort = soort
