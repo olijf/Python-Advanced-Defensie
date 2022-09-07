@@ -1,5 +1,6 @@
 import tkinter as tk
-import tkinter.messagebox
+
+from models.materiaal import Materiaal
 
 class App(tk.Frame):
 
@@ -62,6 +63,14 @@ class App(tk.Frame):
 
 
     def click_handler(self):
+        materiaal = Materiaal(
+            self.naam,
+            self.omschrijving,
+            self.atacode,
+            self.type,
+            self.partnummer,
+            self.serienummer,
+            self.positie)
         pass
 
 
