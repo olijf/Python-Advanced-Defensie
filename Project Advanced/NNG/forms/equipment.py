@@ -7,11 +7,14 @@ class App(tk.Frame):
 
     def __init__(self, master=None):
 
-        w = tk.Label(master, text="Equipment", font=("Arial", 25))
-        w.grid(row = 1, column = 1, columnspan = 2)
+        self.list = ['een','twee','drie']
 
-        self.list = tk.StringVar()
-        w = tk.Listbox(self, listvariable = self.list)
+        w = tk.Label(master, text="Equipment", font=("Arial", 25))
+        w.pack()
+
+        list_var = tk.StringVar(value = self.list)
+        w = tk.Listbox(master, listvariable = list_var)
+        w.pack()
 
 
 
