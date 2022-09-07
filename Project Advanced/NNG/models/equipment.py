@@ -5,6 +5,8 @@ from materiaal import Materiaal
 
 class Equipment:
 
+    FILENAME = r'/Users/peter/Computrain/_InCompany/Defensie/Python Advanced/Project Advanced/NNG/equipment.pickle'
+
     def __init__(self):
         self.equipment = []
 
@@ -19,19 +21,19 @@ class Equipment:
     def overzicht(self) -> str:
         s = 'Equipment:\n'
         for materiaal in self.equipment:
-            s += materiaal.overzicht() + '\n'
+            s += str(materiaal) + '\n'
             s += 80 * '=' + '\n'
         return s
 
     def to_pickle(self):
-        with open('equipment.pickle', 'wb') as f:
+        with open(Equipment.FILENAME, 'wb') as f:
             pickle.dump(self, f)
             print('Data opgeslagen in equipment.pickle')
 
     @staticmethod
     def from_pickle():
         try:
-            with open('equipment.pickle', 'rb') as f:
+            with open(Equipment.FILENAME, 'rb') as f:
                 equipment = pickle.load(f)
                 print('Data gelezen uit equipment.pickle')
                 return equipment

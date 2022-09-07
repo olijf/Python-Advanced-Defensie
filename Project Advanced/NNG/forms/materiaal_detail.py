@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from models.materiaal import Materiaal
+from models.equipment import Equipment
 
 class App(tk.Frame):
 
@@ -74,6 +75,9 @@ class App(tk.Frame):
 
         print(materiaal)
 
+        equipment = Equipment.from_pickle()
+        equipment.add_materiaal(materiaal)
+        equipment.to_pickle()
 
 if __name__ == '__main__':
     root = tk.Tk()

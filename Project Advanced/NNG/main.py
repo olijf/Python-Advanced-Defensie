@@ -38,19 +38,19 @@ def seed_equipment():
 
 if __name__ == '__main__':
 
-    equipment = seed_equipment()
+    # equipment = seed_equipment()
 
-    # try:
-    #     equipment = read_from_pickle()
-    # except FileNotFoundError:
-    #     equipment = seed_equipment()
+    try:
+        equipment = Equipment.from_pickle()
+    except FileNotFoundError:
+        equipment = seed_equipment()
 
     # try:
     #     equipment = Equipment.from_json()
     # except FileNotFoundError:
     #     equipment = seed_equipment()
 
-    # equipment.to_pickle()
+    equipment.to_pickle()
 
     # equipment.to_json()
 
