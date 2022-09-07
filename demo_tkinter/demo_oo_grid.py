@@ -7,29 +7,39 @@ class App(tk.Frame):
         self.teller = 0
 
         w = tk.Label(master, text="Hello, world!")
-        w.pack()
+        w.grid(row = 1, column = 1, columnspan = 2)
 
         w = tk.Button(master, text="Klik hier", command=self.click_handler)
-        w.pack()
+        w.grid(row = 2, column = 1, columnspan = 2)
+
+        w = tk.Label(master, text="Getal 1")
+        w.grid(row = 3, column = 1)
 
         self.text1 = tk.StringVar()
         w = tk.Entry(master, textvariable=self.text1)
-        w.pack()
+        w.grid(row = 3, column = 2)
+
+        w = tk.Label(master, text="Getal 2")
+        w.grid(row = 4, column = 1)
 
         self.text2 = tk.StringVar()
         w = tk.Entry(master, textvariable=self.text2)
-        w.pack()
+        w.grid(row = 4, column = 2)
 
         w = tk.Button(master, text="Tel op", command=self.telop)
-        w.pack()
+        w.grid(row = 5, column = 1, columnspan = 2)
+
+        w = tk.Label(master, text="Totaal")
+        w.grid(row = 6, column = 1)
 
         self.result = tk.StringVar()
         w = tk.Entry(master, textvariable=self.result)
-        w.pack()
+        w.grid(row = 6, column = 2)
 
         self.error_message = tk.Label(master, text="error", fg='#F00')
-        self.error_message.pack()
-        self.error_message.pack_forget()
+        self.error_message.grid(row = 7, column = 1, columnspan = 2)
+        # self.error_message.pack()
+        # self.error_message.pack_forget()
 
     def click_handler(self):
         self.teller += 1
@@ -42,7 +52,7 @@ class App(tk.Frame):
             print('Getal 1 is niet goed')
             # tk.messagebox.showerror('Fout', 'Getal 1 is niet goed')
             self.error_message.config(text='Getal 1 is niet goed')
-            self.error_message.pack()
+            # self.error_message.pack()
             return
         getal1 = int(s)
 
@@ -51,7 +61,7 @@ class App(tk.Frame):
             print('Getal 2 is niet goed')
             # tk.messagebox.showerror('Fout', 'Getal 2 is niet goed')
             self.error_message.config(text='Getal 2 is niet goed')
-            self.error_message.pack()
+            # self.error_message.pack()
             return
         getal2 = int(s)
 
