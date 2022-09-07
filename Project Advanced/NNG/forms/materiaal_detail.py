@@ -64,14 +64,15 @@ class App(tk.Frame):
 
     def click_handler(self):
         materiaal = Materiaal(
-            self.naam,
-            self.omschrijving,
-            self.atacode,
-            self.type,
-            self.partnummer,
-            self.serienummer,
-            self.positie)
-        pass
+            self.naam.get(),
+            self.omschrijving.get(),
+            self.atacode.get(),
+            self.type.get(),
+            self.partnummer.get(),
+            self.serienummer.get(),
+            self.positie.get())
+
+        print(materiaal)
 
 
 if __name__ == '__main__':
