@@ -1,9 +1,22 @@
 import pickle
 import jsonpickle
 
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, backref
+
+engine = create_engine('sqlite:///nng.db', echo=True)
+Base = declarative_base()
+
 from materiaal import Materiaal
 
-class Equipment:
+class Equipment(Base):
+
+    __tablename__ = "equipment"
+
+    id = Column(Integer, primary_key=True)
+    equipment = relationship("Materiaal")
 
     def __init__(self):
         self.equipment = []

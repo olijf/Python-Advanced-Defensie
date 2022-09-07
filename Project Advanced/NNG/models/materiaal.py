@@ -1,10 +1,32 @@
 import jsonpickle
 
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, backref
+
 from gebeurtenis import Gebeurtenis
 from onderhoud import Onderhoud
 
-class Materiaal:
+engine = create_engine('sqlite:///nng.db', echo=True)
+Base = declarative_base()
+
+class Materiaal(Base):
     """Dit is mijn Materiaal klasse. Het gaat om een een enkel stuk materiaal."""
+
+    __tablename__ = "materiaal"
+
+    id = Column(Integer, primary_key=True)
+    naam = Column(String)
+    omschrijving = Column(String)
+    atacode = Column(String)
+    soort = Column(String)
+    partnummer = Column(String)
+    serienummer = Column(String)
+    positie = Column(String)
+    equipment_id = Column(Integer, ForeignKey("equipment.id"))
+    gebeurtenissen = relationship("Gebeurtennis")
+    onderhoudsbeurten = relationship("Onderhoud")
 
     def __init__(self, naam, omschrijving, atacode, soort, partnummer, serienummer, positie):
         self.naam = naam

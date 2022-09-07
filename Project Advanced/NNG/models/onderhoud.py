@@ -1,6 +1,23 @@
 import jsonpickle
 
-class Onderhoud:
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Date, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, backref
+
+engine = create_engine('sqlite:///nng.db', echo=True)
+Base = declarative_base()
+
+class Onderhoud(Base):
+
+    __tablename__ = "onderhoud"
+
+    id = Column(Integer, primary_key=True)
+    naam = Column(String)
+    datum = Column(String)
+    door_wie = Column(String)
+    bevindingen = Column(String)
+    materiaal_id = Column(Integer, ForeignKey("materiaal.id"))
 
     def __init__(self, naam, datum, door_wie, bevindingen):
         self.type = naam
