@@ -1,7 +1,13 @@
 import tkinter as tk
+import logging
 
 from models.materiaal import Materiaal
 from models.equipment import Equipment
+
+logging.basicConfig(filename = 'app.log', # or to a file 'example.log',
+                    level = logging.INFO,  # Logging levels: DEBUG, INFO, WARNING, ERROR, CRITICAL
+                    format = '%(asctime)s.%(msecs)03d - %(name)s - %(levelname)s - %(message)s',
+                    datefmt = '%Y-%m-%dT%H:%M:%S')
 
 class App(tk.Frame):
 
@@ -64,6 +70,9 @@ class App(tk.Frame):
 
 
     def click_handler(self):
+
+        logging.info('Button clicked')
+
         materiaal = Materiaal(
             self.naam.get(),
             self.omschrijving.get(),
@@ -72,6 +81,11 @@ class App(tk.Frame):
             self.partnummer.get(),
             self.serienummer.get(),
             self.positie.get())
+
+        if materiaal.naam == '':
+            logging.error('Naam is leeg gelaten')
+
+        logging.debug(materiaal)
 
         print(materiaal)
 
