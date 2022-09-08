@@ -28,3 +28,5 @@ cursor = conn.execute("SELECT * FROM food")
 # display all data from hotel table
 for row in cursor:
     print(row)
+
+conn.close()

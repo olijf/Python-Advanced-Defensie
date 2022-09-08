@@ -27,3 +27,6 @@ _*/
 # python
 __pycache__
 **/*.pyc
+
+# ini files
+**/config.ini

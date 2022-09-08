@@ -37,3 +37,5 @@ for row in cursor.fetchall():
 	print(d)
 
 	print([type(row[k]) for k in d.keys()])
+
+conn.close()

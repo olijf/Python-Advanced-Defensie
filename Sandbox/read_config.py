@@ -5,6 +5,9 @@ print(config.sections())
 
 config.read('config.ini')
 
+print('User => ', config['bitbucket.org']['User'])
+print('ForwardX11 => ', config['bitbucket.org']['ForwardX11'])
+
 print(config.sections())
 
 print('bitbucket.org' in config)

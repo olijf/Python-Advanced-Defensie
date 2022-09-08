@@ -4,7 +4,7 @@
 import psycopg2
 import sys
 
-con = None
+conn = None
 
 try:
     connection_string = "host='localhost' " \
@@ -27,17 +27,19 @@ try:
     ORDER BY naam ASC"""
     cur.execute(sql)
 
-    # SQL injection
     plaats = 'Overasselt'
 
-    # sql = """\
-    # SELECT naam, woonplaats
-    # FROM public.demo
-    # WHERE woonplaats = '%s'""" % plaats
-    #
-    # print(sql)
-    #
-    # cur.execute(sql)
+    # SQL injection
+    plaats = 'X\';DROP TABLE public.demo;--'
+
+    sql = """\
+    SELECT naam, woonplaats
+    FROM public.demo
+    WHERE woonplaats = '%s' and name = 'x'""" % plaats
+
+    print(sql)
+
+    cur.execute(sql)
 
     cur.execute(
         "prepare prepared_sql as "

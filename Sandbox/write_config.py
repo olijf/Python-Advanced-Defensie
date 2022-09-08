@@ -15,5 +15,5 @@ topsecret['ForwardX11'] = 'no'  # same here
 
 config['DEFAULT']['ForwardX11'] = 'yes'
 
-with open('example.ini', 'w') as configfile:
+with open('config.ini', 'w') as configfile:
   config.write(configfile)

@@ -1,11 +1,17 @@
 import pickle
 import jsonpickle
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 from materiaal import Materiaal
 
 class Equipment:
 
-    FILENAME = r'/Users/peter/Computrain/_InCompany/Defensie/Python Advanced/Project Advanced/NNG/equipment.pickle'
+    # FILENAME = r'/Users/peter/Computrain/_InCompany/Defensie/Python Advanced/Project Advanced/NNG/equipment.pickle'
+
+    FILENAME = config['pickle']['filename']
 
     def __init__(self):
         self.equipment = []

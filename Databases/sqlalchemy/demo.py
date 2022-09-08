@@ -10,5 +10,5 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Create objects
-for student in session.query(Student).order_by(Student.id):
-    print(student.firstname, student.lastname)
+for student in session.query(Student).order_by(Student.firstname):
+    print(student.id, student.firstname, student.lastname)
