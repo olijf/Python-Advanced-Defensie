@@ -20,7 +20,6 @@ class Student(Base):
     lastname = Column(String)
     university = Column(String)
 
-    # ----------------------------------------------------------------------
     def __init__(self, username, firstname, lastname, university):
         """"""
         self.username = username
